@@ -1,0 +1,40 @@
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: detect-aws-credentials
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: pretty-format-json
+        args:
+          - --autofix
+      - id: trailing-whitespace
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.92.0
+    hooks:
+      - id: terraform_fmt
+        args:
+          - --args=-write=true
+      - id: terraform_tflint
+        args:
+          - --args=--config=__GIT_WORKING_DIR__/.config/.tflint.hcl
+      - id: terraform_trivy
+        args:
+          - --args=--config=__GIT_WORKING_DIR__/.config/trivy.yml
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: v0.18.0
+    hooks:
+      - id: terraform-docs-go
+        args:
+          - "--config=.config/.terraform-docs.yml"
+          - "--lockfile=false"
+          - "./"
+  - repo: https://gitlab.com/schmieder.matthias/python-kacl
+    rev: v0.5.1
+    hooks:
+      - id: kacl-verify
