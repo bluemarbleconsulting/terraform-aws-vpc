@@ -1,0 +1,6 @@
+ignoreUnfixed: true
+ignoreFile:
+  - AVD-AWS-0025
+  - AVD-AWS-0132
+  - s3-bucket-logging
+severity: "MEDIUM,HIGH,CRITICAL"
