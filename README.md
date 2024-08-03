@@ -36,10 +36,10 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | Key/value pairs for additional default tags to add to resources | `map(string)` | `{}` | no |
-| <a name="input_desired_number_of_availability_zones"></a> [desired\_number\_of\_availability\_zones](#input\_desired\_number\_of\_availability\_zones) | The number of availability zones to create subnets in | `number` | `2` | no |
-| <a name="input_ipv4_primary_cidr_block"></a> [ipv4\_primary\_cidr\_block](#input\_ipv4\_primary\_cidr\_block) | The primary IPv4 CIDR block for the VPC | `string` | `null` | no |
-| <a name="input_namespace"></a> [namespace](#input\_namespace) | ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique. | `string` | `null` | no |
+| <a name="input_desired_number_of_availability_zones"></a> [desired\_number\_of\_availability\_zones](#input\_desired\_number\_of\_availability\_zones) | The number of availability zones to create subnets in | `number` | n/a | yes |
+| <a name="input_ipv4_primary_cidr_block"></a> [ipv4\_primary\_cidr\_block](#input\_ipv4\_primary\_cidr\_block) | The primary IPv4 CIDR block for the VPC | `string` | n/a | yes |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique. | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Key/value pairs for additional default tags to add to resources | `map(string)` | `{}` | no |
 
 #### Outputs
 

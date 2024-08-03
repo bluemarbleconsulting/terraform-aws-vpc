@@ -20,7 +20,7 @@ resource "aws_vpc" "this" {
   enable_dns_support               = true
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "${var.namespace}-main"
     },
@@ -38,7 +38,7 @@ resource "aws_subnet" "public" {
   vpc_id                          = aws_vpc.this.id
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "${local.selected_azs[count.index % length(local.selected_azs)]}-main-public"
       Type = "public"
@@ -60,7 +60,7 @@ resource "aws_subnet" "private" {
   vpc_id                          = aws_vpc.this.id
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "${local.selected_azs[count.index % length(local.selected_azs)]}-main-private"
       Type = "private"
@@ -77,7 +77,7 @@ resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.this.id
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "main-igw"
     }
@@ -89,7 +89,7 @@ resource "aws_egress_only_internet_gateway" "main" {
   vpc_id = aws_vpc.this.id
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "main-eigw"
     }
@@ -100,7 +100,7 @@ resource "aws_egress_only_internet_gateway" "main" {
 # ------------------ Route Tables ------------------
 resource "aws_default_route_table" "default" {
   default_route_table_id = aws_vpc.this.default_route_table_id
-  tags                   = var.default_tags
+  tags                   = var.tags
 }
 
 resource "aws_route_table" "public" {
@@ -127,7 +127,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "public-main-rt"
     }
@@ -153,7 +153,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = merge(
-    var.default_tags,
+    var.tags,
     {
       Name = "private-main-rt"
     }
@@ -177,5 +177,5 @@ resource "aws_route_table_association" "private_rt_association" {
 # ------------------ Default Security Group ------------------
 resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.this.id
-  tags   = var.default_tags
+  tags   = var.tags
 }

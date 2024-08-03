@@ -2,6 +2,8 @@ plugin "aws" {
   enabled = true
   version = "0.32.0"
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
+
+  deep_check = true
 }
 
 config {
@@ -63,13 +65,13 @@ rule "terraform_workspace_remote" {
 }
 
 rule "terraform_typed_variables" {
-    enabled = false
+    enabled = true
 }
 
 rule "terraform_documented_variables" {
-    enabled = false
+    enabled = true
 }
 
 rule "terraform_documented_outputs" {
-    enabled = false
+    enabled = true
 }
